@@ -10,13 +10,13 @@ type MovieCardProps = {
 }
 
 export default function MovieCard(props: MovieCardProps){
-    const [updatedMovie, setUpdatedMovie] = useState(props.movie)
+
 
     const changeFavorites = (event: ChangeEvent<HTMLInputElement>) => {
-        setUpdatedMovie(movie => ({
-            ...movie,
-            [event.target.name]: event.target.checked
-        }))
+
+         const updatedMovie:Movie = {...props.movie, favorite: event.target.checked}
+
+
         props.updateMovie(updatedMovie)
     }
 
@@ -26,7 +26,7 @@ export default function MovieCard(props: MovieCardProps){
             <p>{props.movie.title}</p>
             <NavLink to={"/api/movie/"+ props.movie.id}>Details</NavLink>
             <button onClick={() => props.deleteMovie(props.movie.id)}>delete</button>
-            <input onChange={changeFavorites} checked={updatedMovie.favorite} type="checkbox" name="favorite"/>
+            <input onChange={changeFavorites} checked={props.movie.favorite} type="checkbox" name="favorite"/>
         </div>
     )
 }
