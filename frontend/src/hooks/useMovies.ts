@@ -3,10 +3,10 @@ import {useEffect, useState} from "react";
 import {Movie} from "../model/Movie";
 
 
-export default function useMovies(){
+export default function useMovies() {
     const [movies, setMovies] = useState([]);
 
-    useEffect( () => {
+    useEffect(() => {
         getMovies()
     }, [])
 
@@ -17,7 +17,7 @@ export default function useMovies(){
             .catch((error) => console.error(error))
     }
 
-    const addMovie = (newMovie:Movie) => {
+    const addMovie = (newMovie: Movie) => {
         axios.post("/api/movie", newMovie)
             .then(getMovies)
     }
@@ -27,8 +27,8 @@ export default function useMovies(){
             .then(getMovies)
     }
 
-    const updateMovie = (updatedMovie:Movie) => {
-        axios.put("/api/movie/"+ updatedMovie.id, updatedMovie)
+    const updateMovie = (updatedMovie: Movie) => {
+        axios.put("/api/movie/" + updatedMovie.id, updatedMovie)
             .then(getMovies)
     }
 

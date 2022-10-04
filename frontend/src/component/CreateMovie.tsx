@@ -32,28 +32,28 @@ export default function CreateMovie(props: CreateMovieProps) {
 
     return (
         <div>
-        <p>Add Movie</p>
-        <form onSubmit={handleSubmit}>
-            <label>
-                <input
-                    type="text"
-                    name="title"
-                    placeholder="Title"
-                    value={movie.title}
-                    onChange={handleChange}
-                />
-            </label>
-            <label>
-                <input
-                    type="text"
-                    name="posterURL"
-                    placeholder="Poster URL"
-                    value={movie.posterURL}
-                    onChange={handleChange}
-                />
-            </label>
-            <button type={"submit"}>Add movie</button>
-        </form>
+            <p>Add Movie</p>
+            <form onSubmit={handleSubmit}>
+                <label>
+                    <input
+                        type="text"
+                        name="title"
+                        placeholder="Title"
+                        value={movie.title}
+                        onChange={handleChange}
+                    />
+                </label>
+                <label>
+                    <input
+                        type="text"
+                        name="posterURL"
+                        placeholder="Poster URL"
+                        value={movie.posterURL}
+                        onChange={handleChange}
+                    />
+                </label>
+                <button type={"submit"}>Add movie</button>
+            </form>
         </div>
     )
 }

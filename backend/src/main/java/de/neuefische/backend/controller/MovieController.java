@@ -13,18 +13,28 @@ public class MovieController {
 
     private final MovieService movieService;
 
-    public MovieController(MovieService movieService) {this.movieService = movieService;}
+    public MovieController(MovieService movieService) {
+        this.movieService = movieService;
+    }
 
     @GetMapping
-    public List<Movie> getAllMovies() {return movieService.getAllMovies();}
+    public List<Movie> getAllMovies() {
+        return movieService.getAllMovies();
+    }
 
     @PostMapping
-    public Movie addMovie(@RequestBody MovieDTO movie) {return movieService.addMovie(movie);}
+    public Movie addMovie(@RequestBody MovieDTO movie) {
+        return movieService.addMovie(movie);
+    }
 
-    @DeleteMapping(path="/{id}")
-    public void deleteMovieById(@PathVariable String id) {movieService.deleteMovieById(id);}
+    @DeleteMapping(path = "/{id}")
+    public void deleteMovieById(@PathVariable String id) {
+        movieService.deleteMovieById(id);
+    }
 
-    @PutMapping(path="/{id}")
-    public Movie updateMovie(@RequestBody Movie movie) {return movieService.updateMovie(movie);}
+    @PutMapping(path = "/{id}")
+    public Movie updateMovie(@RequestBody Movie movie) {
+        return movieService.updateMovie(movie);
+    }
 
 }

@@ -22,7 +22,9 @@ public class MovieService {
         this.idService = idService;
     }
 
-    public List<Movie> getAllMovies() {return movieRepository.getAllMovies();}
+    public List<Movie> getAllMovies() {
+        return movieRepository.getAllMovies();
+    }
 
     public Movie addMovie(MovieDTO movie) {
         Movie newMovie = Movie.builder()
@@ -31,8 +33,8 @@ public class MovieService {
                 .posterURL(movie.getPosterURL())
                 .favorite(false)
                 .build();
-
-        return movieRepository.addMovie(newMovie);}
+        return movieRepository.addMovie(newMovie);
+    }
 
     public void deleteMovieById(String id) {
         if (movieRepository.getMovieById(id) == null)

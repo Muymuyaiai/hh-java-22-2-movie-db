@@ -13,12 +13,15 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
+                <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
                 <h1>Movie DB</h1>
                 <HashRouter>
+
                     <Routes>
                         <Route path={"/"} element={
                             <div>
-                                {(movies.length !=0) || <p>No movies in database!</p>}
+                                {(movies.length != 0) || <p>No movies in database!</p>}
                                 <MovieGallery movies={movies} deleteMovie={deleteMovie} updateMovie={updateMovie}/>
                                 <CreateMovie addMovie={addMovie}/>
                             </div>}/>

@@ -1,5 +1,5 @@
 import './MovieCard.css';
-import { Movie } from "../model/Movie";
+import {Movie} from "../model/Movie";
 import {NavLink} from "react-router-dom";
 import {ChangeEvent, useState} from "react";
 
@@ -9,24 +9,29 @@ type MovieCardProps = {
     updateMovie: (movie: Movie) => void
 }
 
-export default function MovieCard(props: MovieCardProps){
-
+export default function MovieCard(props: MovieCardProps) {
 
     const changeFavorites = (event: ChangeEvent<HTMLInputElement>) => {
-
-         const updatedMovie:Movie = {...props.movie, favorite: event.target.checked}
-
-
+        const updatedMovie: Movie = {...props.movie, favorite: event.target.checked}
         props.updateMovie(updatedMovie)
     }
 
-    return(
-        <div>
-            <img src={props.movie.posterURL} alt="no image"/>
-            <p>{props.movie.title}</p>
-            <NavLink to={"/api/movie/"+ props.movie.id}>Details</NavLink>
-            <button onClick={() => props.deleteMovie(props.movie.id)}>delete</button>
-            <input onChange={changeFavorites} checked={props.movie.favorite} type="checkbox" name="favorite"/>
+    return (
+
+        <div className={"card"}>
+            <div className={"card-menu"}>
+                <label className={"star-wrapper"}>
+                    <input onChange={changeFavorites} checked={props.movie.favorite} type="checkbox"
+                           className={"star"}/>
+                    <div className={"star"}/>
+                </label>
+                <label className={"delete-wrapper"}>
+                    <button onClick={() => props.deleteMovie(props.movie.id)}>x</button>
+                    <div className={"trash"}/>
+                </label>
+            </div>
+            <NavLink to={"/api/movie/" + props.movie.id}><img src={props.movie.posterURL} alt="no image"/></NavLink>
+            <NavLink to={"/api/movie/" + props.movie.id}><h3>{props.movie.title}</h3></NavLink>
         </div>
     )
 }

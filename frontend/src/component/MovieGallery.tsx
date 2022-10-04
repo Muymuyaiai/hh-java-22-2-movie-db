@@ -1,6 +1,7 @@
+import './MovieGallery.css';
 import {Movie} from "../model/Movie"
-import MovieCard from "./MovieCard";
-import {useState} from "react";
+import {ChangeEvent, useState} from "react";
+import MovieCard from './MovieCard';
 
 type MovieGalleryProps = {
     movies: Movie[]
@@ -10,23 +11,38 @@ type MovieGalleryProps = {
 
 export default function MovieGallery(props: MovieGalleryProps) {
     const [search, setSearch] = useState("");
+    const [isFav, setIsFav] = useState(false);
 
-    const filterMovies = (movie: Movie[]) => {
-        return props.movies.filter(({title}) => title.toLowerCase().includes(search.toLowerCase()))
+    const mapMovies = (movies: Movie[]) => {
+        return movies.map((movie) => <MovieCard movie={movie} deleteMovie={props.deleteMovie}
+                                                updateMovie={props.updateMovie}/>)
+    }
+    const searchMovies = (movies: Movie[]) => {
+        return movies.filter(({title}) => title.toLowerCase().includes(search.toLowerCase()))
     }
 
-    const movieExists = (filterMovies(props.movies).length != 0)
+    const changeFav = (event: ChangeEvent<HTMLInputElement>) => {
+        setIsFav(event.target.checked)
+    }
 
+    const movieExists = (searchMovies(props.movies).length != 0)
     return (
-        <div>
-            <input onChange={(event) => setSearch(event.target.value)} placeholder="search"/>
-            {movieExists ?
-                <div>
-                    {filterMovies(props.movies).map((movie) => <MovieCard movie={movie} deleteMovie={props.deleteMovie} updateMovie={props.updateMovie}/>)}
-                </div>
-                : <h3>This movie is not in our database!</h3>
-
-            }
+        <div className={"gallery"}>
+            <div className={"search"}>
+                <input onChange={(event) => setSearch(event.target.value)} placeholder="search"/>
+                <label className={"toggler-wrapper style-1"}>
+                    <input className="content" onChange={changeFav} type="checkbox"/>
+                    <div className={"toggler-slider"}>
+                        <div className={"toggler-knob"}></div>
+                    </div>
+                </label>
+            </div>
+            <div className={"cards"}>
+                {isFav ?
+                    mapMovies(searchMovies(props.movies.filter(({favorite}) => favorite)))
+                    : mapMovies(searchMovies(props.movies))
+                }
+            </div>
         </div>
     )
 }
