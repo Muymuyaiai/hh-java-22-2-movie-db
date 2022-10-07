@@ -1,7 +1,7 @@
 import './MovieCard.css';
 import {Movie} from "../model/Movie";
 import {NavLink} from "react-router-dom";
-import {ChangeEvent, useState} from "react";
+import {ChangeEvent} from "react";
 
 type MovieCardProps = {
     movie: Movie

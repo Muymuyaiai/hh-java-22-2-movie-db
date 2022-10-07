@@ -8,7 +8,7 @@ import MovieDetails from './component/MovieDetails';
 
 function App() {
 
-    const {movies, getMovies, addMovie, deleteMovie, updateMovie} = useMovies()
+    const {movies, addMovie, deleteMovie, updateMovie} = useMovies()
 
     return (
         <div className="App">
