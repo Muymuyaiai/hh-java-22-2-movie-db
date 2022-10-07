@@ -1,0 +1,51 @@
+img {
+    height: 330px
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 250px;
+    background-color: #171a1e;
+}
+
+
+.card-menu {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.star-wrapper input[type="checkbox"] {
+    display: none;
+}
+
+.star {
+    position: relative;
+    color: #c8c8c8;
+}
+
+.star:before {
+    margin: 5px;
+    content: "\f005";
+    font-family: FontAwesome, serif;
+    font-size: 1.5em;
+}
+
+.star-wrapper input[type="checkbox"]:checked+.star {
+    color: #ffc107;
+}
+
+.delete-wrapper button {
+    display: none;
+}
+
+
+.trash:before{
+    position: relative;
+    color: #c8c8c8;
+    margin: 5px;
+    content: "\f1f8";
+    font-family: FontAwesome, serif;
+    font-size: 1.5em;
+}

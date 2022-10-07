@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+import MovieGallery from "./component/MovieGallery";
+import useMovies from './hooks/useMovies';
+import {HashRouter, Route, Routes} from "react-router-dom";
+import CreateMovie from "./component/CreateMovie";
+import MovieDetails from './component/MovieDetails';
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const {movies, getMovies, addMovie, deleteMovie, updateMovie} = useMovies()
+
+    return (
+        <div className="App">
+            <header className="App-header">
+                <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+                <h1>Movie DB</h1>
+                <HashRouter>
+
+                    <Routes>
+                        <Route path={"/"} element={
+                            <div>
+                                {(movies.length != 0) || <p>No movies in database!</p>}
+                                <MovieGallery movies={movies} deleteMovie={deleteMovie} updateMovie={updateMovie}/>
+                                <CreateMovie addMovie={addMovie}/>
+                            </div>}/>
+                        <Route path={"/api/movie/:id"} element={
+                            <MovieDetails movies={movies}/>
+                        }/>
+                    </Routes>
+                </HashRouter>
+
+
+            </header>
+        </div>
+    );
 }
 
 export default App;
