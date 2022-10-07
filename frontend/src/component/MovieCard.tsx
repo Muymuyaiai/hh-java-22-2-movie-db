@@ -30,7 +30,7 @@ export default function MovieCard(props: MovieCardProps) {
                     <div className={"trash"}/>
                 </label>
             </div>
-            <NavLink to={"/api/movie/" + props.movie.id}><img src={props.movie.posterURL} alt="no image"/></NavLink>
+            <NavLink to={"/api/movie/" + props.movie.id}><img src={props.movie.posterURL} alt="poster"/></NavLink>
             <NavLink to={"/api/movie/" + props.movie.id}><h3>{props.movie.title}</h3></NavLink>
         </div>
     )
