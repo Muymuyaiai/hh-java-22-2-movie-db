@@ -21,7 +21,7 @@ function App() {
                     <Routes>
                         <Route path={"/"} element={
                             <div>
-                                {(movies.length != 0) || <p>No movies in database!</p>}
+                                {(movies.length !== 0) || <p>No movies in database!</p>}
                                 <MovieGallery movies={movies} deleteMovie={deleteMovie} updateMovie={updateMovie}/>
                                 <CreateMovie addMovie={addMovie}/>
                             </div>}/>

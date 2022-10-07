@@ -25,7 +25,7 @@ export default function MovieGallery(props: MovieGalleryProps) {
         setIsFav(event.target.checked)
     }
 
-    const movieExists = (searchMovies(props.movies).length != 0)
+    const movieExists = (searchMovies(props.movies).length !== 0)
     return (
         <div className={"gallery"}>
             <div className={"search"}>
