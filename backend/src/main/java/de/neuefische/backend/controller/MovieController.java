@@ -22,8 +22,8 @@ public class MovieController {
         return movieService.getAllMovies();
     }
 
-    @GetMapping("/api/movie/{id}")
-    public Movie getMovieById (@RequestBody String id) {return movieService.getMovieByID(id);}
+    @GetMapping("{id}")
+    public Movie getMovieById (@PathVariable String id) {return movieService.getMovieByID(id);}
 
     @PostMapping
     public Movie addMovie(@RequestBody MovieDTO movie) {
