@@ -23,7 +23,11 @@ public class MovieService {
     }
 
     public List<Movie> getAllMovies() {
-        return movieRepository.getAllMovies();
+        return movieRepository.findAll();
+    }
+
+    public Movie getMovieByID(String id){
+        return movieRepository.findById(id).orElseThrow(() -> new NoSuchElementException("No movie found with ID:" + id));
     }
 
     public Movie addMovie(MovieDTO movie) {
@@ -33,16 +37,14 @@ public class MovieService {
                 .posterURL(movie.getPosterURL())
                 .favorite(false)
                 .build();
-        return movieRepository.addMovie(newMovie);
+        return movieRepository.save(newMovie);
     }
 
     public void deleteMovieById(String id) {
-        if (movieRepository.getMovieById(id) == null)
-            throw new NoSuchElementException();
-        movieRepository.deleteMovieById(id);
+        movieRepository.deleteById(id);
     }
 
     public Movie updateMovie(Movie movie) {
-        return movieRepository.updateMovie(movie);
+        return movieRepository.save(movie);
     }
 }
